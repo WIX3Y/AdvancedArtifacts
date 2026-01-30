@@ -3,9 +3,9 @@ Collect and merge powerful artifacts to gain increasing bonuses to damage and de
 
 ## Commands
 ### aagive <player> <artifact-id> <level>
-Description: Gives an artifact to a player
-Example usage: /aagive WIX3Y reduce_poison_damage 5
-Aliases: artifactsgive, advancedartifactsgive
+Description: Gives an artifact to a player \
+Example usage: /aagive WIX3Y reduce_poison_damage 5 \
+Aliases: artifactsgive, advancedartifactsgive \
 Permission: advancedartifacts.give
 ## aainventory
 Description: Opens the artifact inventory gui
