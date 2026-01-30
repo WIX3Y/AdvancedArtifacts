@@ -1,0 +1,54 @@
+name: AdvancedArtifacts
+version: '1.0.0'
+main: wix3y.advancedArtifacts.AdvancedArtifacts
+api-version: '1.21'
+authors: [ WIX3Y ]
+description: Collect and merge powerful artifacts to gain increasing bonuses to damage and defense against specific mobs or actions.
+commands:
+  aagive:
+    description: Gives an artifact to a player
+    usage: /aagive
+    aliases: [artifactsgive, advancedartifactsgive]
+    permission: advancedartifacts.give
+  aainventory:
+    description: Opens the artifact inventory gui
+    usage: /aainventory
+    aliases: [advancedartifactsinventory, advancedartifactsinv, artifactsinventory, artifactsinv, aainv, advancedartifacts, artifacts]
+    permission: advancedartifacts.inventory.self
+  aainventoryother:
+    description: Opens the artifact inventory gui of another player
+    usage: /aainventoryother
+    aliases: [advancedartifactsinventoryother, advancedartifactsinvother, artifactsinventoryother, artifactsinvother, aainvother, advancedartifactsother, artifactsother]
+    permission: advancedartifacts.inventory.adminview
+  aatinker:
+    description: Opens the gui for merging two artifacts of the same type and level into an artifact with a higher level
+    usage: /aatinker
+    aliases: [ advancedartifactstinker, artifactstinker, tinker]
+    permission: advancedartifacts.tinker
+  aareload:
+    description: Reloads the plugin
+    usage: /aareload
+    aliases: advancedartifactsreload
+    permission: advancedartifacts.reload
+permissions:
+  advancedartifacts.inventory.self:
+    description: "Allows using the /aainventory command."
+    default: true
+  advancedartifacts.inventory.others:
+    description: "Allows using the /aainventory <player> command."
+    default: op
+  advancedartifacts.inventory.adminview:
+    description: "Allows using the /aainventoryother <player> command."
+    default: op
+  advancedartifacts.give:
+    description: "Allows using the /aagive <player> <artifact> <level> command."
+    default: op
+  advancedartifacts.reload:
+    description: "Allows using the /aareload command."
+    default: op
+  advancedartifacts.tinker.self:
+    description: "Allows using the /aatinker command."
+    default: op
+  advancedartifacts.tinker.others:
+    description: "Allows using the /aatinker <player> command."
+    default: op

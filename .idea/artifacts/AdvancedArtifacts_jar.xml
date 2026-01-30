@@ -1,0 +1,11 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="AdvancedArtifacts:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/AdvancedArtifacts_jar</output-path>
+    <root id="archive" name="AdvancedArtifacts.jar">
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/zaxxer/HikariCP/5.1.0/HikariCP-5.1.0.jar" path-in-jar="/" />
+      <element id="module-output" name="AdvancedArtifacts.main" />
+      <element id="file-copy" path="$PROJECT_DIR$/src/main/resources/config.yml" />
+      <element id="file-copy" path="$PROJECT_DIR$/src/main/resources/plugin.yml" />
+    </root>
+  </artifact>
+</component>

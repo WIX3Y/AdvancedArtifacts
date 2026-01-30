@@ -1,0 +1,521 @@
+#
+#   ┏━━━━━━━━━━━━━━━━━━━━━━━━ ⊹ ☆ ⊹ ━━━━━━━━━━━━━━━━━━━━━━━━┓
+#
+#                       Advanced Artifacts
+#       Source: https://github.com/WIX3Y/AdvancedArtifacts
+#                          Author: WIX3Y
+#
+#   ┗━━━━━━━━━━━━━━━━━━━━━━━━ ⊹ ☆ ⊹ ━━━━━━━━━━━━━━━━━━━━━━━━┛
+#
+#   ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+#
+#                        List of Commands
+#
+#               aagive <player> <artifact> <level>
+#          Gives a player an artifact of specific level
+#           Required permission: advancedartifacts.give
+#      Example usage: /aagive WIX3Y reduce_poison_damage 10
+#
+#                           aainventory
+#                  Opens the artifacts inventory
+#      Required permission: advancedartifacts.inventory.self
+#            (player have this permission by default)
+#                   Example usage: /aainventory
+#
+#                      aainventory <player>
+#       Opens the artifacts inventory for a specific player
+#     Required permission: advancedartifacts.inventory.others
+#                Example usage: /aainventory WIX3Y
+#
+#                    aainventoryother <player>
+#  Allows viewing and editing another players artifact inventory
+#     Note: do not edit another players artifact inventory at
+#        the same time as that player is editing their own
+#                       artifact inventory
+#   Required permission: advancedartifacts.inventory.adminview
+#             Example usage: /aainventoryother WIX3Y
+#
+#                            aatinker
+#                      Opens the tinker gui
+#       Required permission: advancedartifacts.tinker.self
+#                    Example usage: /aatinker
+#
+#                        aatinker <player>
+#             Opens the tinker gui for another player
+#      Required permission: advancedartifacts.tinker.others
+#                 Example usage: /aatinker WIX3Y
+#
+#                            aareload
+#                     Reloads the config file
+#          Required permission: advancedartifacts.reload
+#                    Example usage: /aareload
+#
+#   ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+#
+
+# Do not change
+config-version: 1
+
+MySQL:
+  ip: localhost
+  port: 3306
+  database: advanced_artifacts
+  username: root
+  password: password
+  poolsize: 10
+  updatefreq: 12000 # How often to write to mysql database in ticks, set to -1 to disable
+
+# Title in the artifact tinker menu
+TinkerMenuName: "<gradient:#5544FF:#CCBBFF:#5544FF> Advanced Artifacts Tinker </gradient>"
+# Title in the player artifact inventory
+MenuName: "<gradient:#5544FF:#CCBBFF:#5544FF> Advanced Artifacts Inventory </gradient>"
+# Number of rows in the player artifact inventory
+inventoryRows: 3
+
+# List of artifacts
+#
+# Additional mob specific damage dealing increase artifacts can be added using identifier:
+# increase_mob_damage_<mob-type>
+#
+# Additional mob specific damage taken reduction artifacts can be added using identifier:
+# reduce_mob_damage_<mob-type>
+Artifacts:
+  reduce_poison_damage:
+    Item: SLIME_BALL # Item material
+    ItemModel: none # custom item model with format namespace:key
+    Name: "<!italic><gradient:#5544FF:#CCBBFF:#5544FF>Pᴏɪsᴏɴ Pʀᴏᴛᴇᴄᴛɪᴏɴ Aʀᴛɪғᴀᴄᴛ</gradient>" # display name
+    Lore: # display lore with placeholders {desc} and {level} taken from the levels defined below
+      - ""
+      - "<!italic><gray>Reduces damage taken from poison effect by {desc}%"
+      - ""
+      - "<!italic><gray>Artifact level {level}"
+      - ""
+      - "<!italic><gray>Place in <yellow>/artifacts <gray>to use"
+      - ""
+      - "<reset><bold><blue>Artifact"
+    Levels:
+      1:
+        multiplier: 0.95 # damage taken multiplier, 0.95 means a 5% reduction in damage
+        level: "I" # display level used for lore placeholder
+        description: "5" # display description used for lore placeholder
+      2:
+        multiplier: 0.9
+        level: "II"
+        description: "10"
+      3:
+        multiplier: 0.85
+        level: "III"
+        description: "15"
+      4:
+        multiplier: 0.8
+        level: "IV"
+        description: "20"
+      5:
+        multiplier: 0.75
+        level: "V"
+        description: "25"
+      6:
+        multiplier: 0.7
+        level: "VI"
+        description: "30"
+      7:
+        multiplier: 0.65
+        level: "VII"
+        description: "35"
+      8:
+        multiplier: 0.6
+        level: "VIII"
+        description: "40"
+      9:
+        multiplier: 0.55
+        level: "IX"
+        description: "45"
+      10:
+        multiplier: 0.5
+        level: "X"
+        description: "50"
+  reduce_wither_damage:
+    Item: WITHER_ROSE
+    ItemModel: none
+    Name: "<!italic><gradient:#5544FF:#CCBBFF:#5544FF>Wɪᴛʜᴇʀ Pʀᴏᴛᴇᴄᴛɪᴏɴ Aʀᴛɪғᴀᴄᴛ</gradient>"
+    Lore:
+      - ""
+      - "<!italic><gray>Reduces damage taken from wither effect by {desc}%"
+      - ""
+      - "<!italic><gray>Artifact level {level}"
+      - ""
+      - "<!italic><gray>Place in <yellow>/artifacts <gray>to use"
+      - ""
+      - "<reset><bold><blue>Artifacts"
+    Levels:
+      1:
+        multiplier: 0.95
+        level: "I"
+        description: "5"
+      2:
+        multiplier: 0.9
+        level: "II"
+        description: "10"
+      3:
+        multiplier: 0.85
+        level: "III"
+        description: "15"
+      4:
+        multiplier: 0.8
+        level: "IV"
+        description: "20"
+      5:
+        multiplier: 0.75
+        level: "V"
+        description: "25"
+      6:
+        multiplier: 0.7
+        level: "VI"
+        description: "30"
+      7:
+        multiplier: 0.65
+        level: "VII"
+        description: "35"
+      8:
+        multiplier: 0.6
+        level: "VIII"
+        description: "40"
+      9:
+        multiplier: 0.55
+        level: "IX"
+        description: "45"
+      10:
+        multiplier: 0.5
+        level: "X"
+        description: "50"
+  reduce_fall_damage:
+    Item: FEATHER
+    ItemModel: none
+    Name: "<!italic><gradient:#5544FF:#CCBBFF:#5544FF>Fᴇᴀᴛʜᴇʀ Fᴀʟʟɪɴɢ Aʀᴛɪғᴀᴄᴛ</gradient>"
+    Lore:
+      - ""
+      - "<!italic><gray>Reduces fall damage taken by {desc}%"
+      - ""
+      - "<!italic><gray>Artifact level {level}"
+      - ""
+      - "<!italic><gray>Place in <yellow>/artifacts <gray>to use"
+      - ""
+      - "<reset><bold><blue>Artifacts"
+    Levels:
+      1:
+        multiplier: 0.95
+        level: "I"
+        description: "5"
+      2:
+        multiplier: 0.9
+        level: "II"
+        description: "10"
+      3:
+        multiplier: 0.85
+        level: "III"
+        description: "15"
+      4:
+        multiplier: 0.8
+        level: "IV"
+        description: "20"
+      5:
+        multiplier: 0.75
+        level: "V"
+        description: "25"
+      6:
+        multiplier: 0.7
+        level: "VI"
+        description: "30"
+      7:
+        multiplier: 0.65
+        level: "VII"
+        description: "35"
+      8:
+        multiplier: 0.6
+        level: "VIII"
+        description: "40"
+      9:
+        multiplier: 0.55
+        level: "IX"
+        description: "45"
+      10:
+        multiplier: 0.5
+        level: "X"
+        description: "50"
+  reduce_thorns_damage:
+    Item: PRISMARINE_SHARD
+    ItemModel: none
+    Name: "<!italic><gradient:#5544FF:#CCBBFF:#5544FF>Tʜᴏʀɴs Pʀᴏᴛᴇᴄᴛɪᴏɴ Aʀᴛɪғᴀᴄᴛ</gradient>"
+    Lore:
+      - ""
+      - "<!italic><gray>Reduces damage taken from thorns by {desc}%"
+      - ""
+      - "<!italic><gray>Artifact level {level}"
+      - ""
+      - "<!italic><gray>Place in <yellow>/artifacts <gray>to use"
+      - ""
+      - "<reset><bold><blue>Artifacts"
+    Levels:
+      1:
+        multiplier: 0.95
+        level: "I"
+        description: "5"
+      2:
+        multiplier: 0.9
+        level: "II"
+        description: "10"
+      3:
+        multiplier: 0.85
+        level: "III"
+        description: "15"
+      4:
+        multiplier: 0.8
+        level: "IV"
+        description: "20"
+      5:
+        multiplier: 0.75
+        level: "V"
+        description: "25"
+      6:
+        multiplier: 0.7
+        level: "VI"
+        description: "30"
+      7:
+        multiplier: 0.65
+        level: "VII"
+        description: "35"
+      8:
+        multiplier: 0.6
+        level: "VIII"
+        description: "40"
+      9:
+        multiplier: 0.55
+        level: "IX"
+        description: "45"
+      10:
+        multiplier: 0.5
+        level: "X"
+        description: "50"
+  reduce_fire_damage:
+    Item: BLAZE_POWDER
+    ItemModel: none
+    Name: "<!italic><gradient:#5544FF:#CCBBFF:#5544FF>Fɪʀᴇ Pʀᴏᴛᴇᴄᴛɪᴏɴ Aʀᴛɪғᴀᴄᴛ</gradient>"
+    Lore:
+      - ""
+      - "<!italic><gray>Reduces damage taken from fire by {desc}%"
+      - ""
+      - "<!italic><gray>Artifact level {level}"
+      - ""
+      - "<!italic><gray>Place in <yellow>/artifacts <gray>to use"
+      - ""
+      - "<reset><bold><blue>Artifacts"
+    Levels:
+      1:
+        multiplier: 0.95
+        level: "I"
+        description: "5"
+      2:
+        multiplier: 0.9
+        level: "II"
+        description: "10"
+      3:
+        multiplier: 0.85
+        level: "III"
+        description: "15"
+      4:
+        multiplier: 0.8
+        level: "IV"
+        description: "20"
+      5:
+        multiplier: 0.75
+        level: "V"
+        description: "25"
+      6:
+        multiplier: 0.7
+        level: "VI"
+        description: "30"
+      7:
+        multiplier: 0.65
+        level: "VII"
+        description: "35"
+      8:
+        multiplier: 0.6
+        level: "VIII"
+        description: "40"
+      9:
+        multiplier: 0.55
+        level: "IX"
+        description: "45"
+      10:
+        multiplier: 0.5
+        level: "X"
+        description: "50"
+  reduce_contact_damage:
+    Item: CACTUS
+    ItemModel: none
+    Name: "<!italic><gradient:#5544FF:#CCBBFF:#5544FF>Cᴏɴᴛᴀᴄᴛ Pʀᴏᴛᴇᴄᴛɪᴏɴ Aʀᴛɪғᴀᴄᴛ</gradient>"
+    Lore:
+      - ""
+      - "<!italic><gray>Reduces damage from contact by {desc}%"
+      - ""
+      - "<!italic><gray>Artifact level {level}"
+      - ""
+      - "<!italic><dark_gray>Contact damage is caused by blocks such as"
+      - "<!italic><dark_gray>cactus, sweet berries and pointed dripstone"
+      - ""
+      - "<!italic><gray>Place in <yellow>/artifacts <gray>to use"
+      - ""
+      - "<reset><bold><blue>Artifacts"
+    Levels:
+      1:
+        multiplier: 0.95
+        level: "I"
+        description: "5"
+      2:
+        multiplier: 0.9
+        level: "II"
+        description: "10"
+      3:
+        multiplier: 0.85
+        level: "III"
+        description: "15"
+      4:
+        multiplier: 0.8
+        level: "IV"
+        description: "20"
+      5:
+        multiplier: 0.75
+        level: "V"
+        description: "25"
+      6:
+        multiplier: 0.7
+        level: "VI"
+        description: "30"
+      7:
+        multiplier: 0.65
+        level: "VII"
+        description: "35"
+      8:
+        multiplier: 0.6
+        level: "VIII"
+        description: "40"
+      9:
+        multiplier: 0.55
+        level: "IX"
+        description: "45"
+      10:
+        multiplier: 0.5
+        level: "X"
+        description: "50"
+  reduce_mob_damage_zombie:
+    Item: ROTTEN_FLESH
+    ItemModel: none
+    Name: "<!italic><gradient:#5544FF:#CCBBFF:#5544FF>Zᴏᴍʙɪᴇ Pʀᴏᴛᴇᴄᴛɪᴏɴ Aʀᴛɪғᴀᴄᴛ</gradient>"
+    Lore:
+      - ""
+      - "<!italic><gray>Reduces damage taken from zombies by {desc}%"
+      - ""
+      - "<!italic><gray>Artifact level {level}"
+      - ""
+      - "<!italic><gray>Place in <yellow>/artifacts <gray>to use"
+      - ""
+      - "<reset><bold><blue>Artifacts"
+    Levels:
+      1:
+        multiplier: 0.95
+        level: "I"
+        description: "5"
+      2:
+        multiplier: 0.9
+        level: "II"
+        description: "10"
+      3:
+        multiplier: 0.85
+        level: "III"
+        description: "15"
+      4:
+        multiplier: 0.8
+        level: "IV"
+        description: "20"
+      5:
+        multiplier: 0.75
+        level: "V"
+        description: "25"
+      6:
+        multiplier: 0.7
+        level: "VI"
+        description: "30"
+      7:
+        multiplier: 0.65
+        level: "VII"
+        description: "35"
+      8:
+        multiplier: 0.6
+        level: "VIII"
+        description: "40"
+      9:
+        multiplier: 0.55
+        level: "IX"
+        description: "45"
+      10:
+        multiplier: 0.5
+        level: "X"
+        description: "50"
+  increase_mob_damage_zombie:
+    Item: ROTTEN_FLESH
+    ItemModel: none
+    Name: "<!italic><gradient:#5544FF:#CCBBFF:#5544FF>Zᴏᴍʙɪᴇ Pʀᴏᴛᴇᴄᴛɪᴏɴ Aʀᴛɪғᴀᴄᴛ</gradient>"
+    Lore:
+      - ""
+      - "<!italic><gray>Reduces damage taken from zombies by {desc}%"
+      - ""
+      - "<!italic><gray>Artifact level {level}"
+      - ""
+      - "<!italic><gray>Place in <yellow>/artifacts <gray>to use"
+      - ""
+      - "<reset><bold><blue>Artifacts"
+    Levels:
+      1:
+        multiplier: 1.05  # damage dealt multiplier, 1.05 means a 5% increase in damage
+        level: "I"
+        description: "5"
+      2:
+        multiplier: 1.1
+        level: "II"
+        description: "10"
+      3:
+        multiplier: 1.15
+        level: "III"
+        description: "15"
+      4:
+        multiplier: 1.2
+        level: "IV"
+        description: "20"
+      5:
+        multiplier: 1.25
+        level: "V"
+        description: "25"
+      6:
+        multiplier: 1.3
+        level: "VI"
+        description: "30"
+      7:
+        multiplier: 1.35
+        level: "VII"
+        description: "35"
+      8:
+        multiplier: 1.4
+        level: "VIII"
+        description: "40"
+      9:
+        multiplier: 1.45
+        level: "IX"
+        description: "45"
+      10:
+        multiplier: 1.5
+        level: "X"
+        description: "50"
+      20:
+        multiplier: 2.0
+        level: "XX"
+        description: "100"
